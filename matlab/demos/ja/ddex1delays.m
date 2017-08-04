@@ -1,0 +1,6 @@
+% DDEX1DELAYS  DDEX1DE Ç≈égÇÌÇÍÇÈíxâÑ
+%
+%   éQçl DDESD.
+
+
+%   Copyright 1984-2006 The MathWorks, Inc.

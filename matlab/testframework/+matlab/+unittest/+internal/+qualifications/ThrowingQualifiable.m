@@ -1,0 +1,9 @@
+classdef ThrowingQualifiable < matlab.unittest.qualifications.Assertable & ...
+                               matlab.unittest.qualifications.Assumable & ...
+                               matlab.unittest.qualifications.FatalAssertable & ...
+                               matlab.unittest.internal.Loggable
+    
+    % Copyright 2013 The MathWorks, Inc.
+    
+end
+% LocalWords:  Loggable

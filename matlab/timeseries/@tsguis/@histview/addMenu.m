@@ -1,0 +1,13 @@
+function addMenu(h,hplot)
+
+% Copyright 2004-2011 The MathWorks, Inc.
+   
+%% Install uimenus on time selection rectangle
+for k=1:prod(size(h.SelectionPatch))
+      h.Menus = [h.Menus; uimenu('Label',getString(message('MATLAB:tsguis:histview:addMenu:ReplaceWithNaNs')),'Parent', ...
+          get(h.SelectionPatch(k),'Uicontextmenu'),'Callback',...
+          @(es,ed) delselection(hplot));
+          uimenu('Label',getString(message('MATLAB:tsguis:histview:addMenu:RemoveSelection')),'Parent', ...
+          get(h.SelectionPatch(k),'Uicontextmenu'),'Callback',...
+          @(es,ed) rmselection(hplot))];
+end

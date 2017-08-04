@@ -1,0 +1,36 @@
+function addToolsMenus(h,f)
+
+% Copyright 2005-2012 The MathWorks, Inc.
+
+%% Adds tools menus for this plot type. Overloading this method lets
+%% non-timeplots exclude irrelevant Tools menus
+
+%% Get the tools menu
+mtools = findobj(allchild(f),'type','uimenu','Tag','figMenuTools');
+
+%% Add 'Merge/resample...' menu
+uimenu('Parent',mtools,'Label', ...
+    getString(message('MATLAB:timeseries:tsguis:viewnode:ResampleData')), ...
+    'Callback', @(es,ed) tsguis.mergedlg(h),'Separator','on');
+%% Add Preprocess data...' menu
+mpreproc = uimenu('Parent',mtools,'Label', ...
+    getString(message('MATLAB:timeseries:tsguis:viewnode:ProcessData')));
+uimenu('Parent',mpreproc,'Label', ...
+    getString(message('MATLAB:timeseries:tsguis:viewnode:RemoveMissingData')), ...
+    'Callback', {@localPreproc h 4});
+uimenu('Parent',mpreproc,'Label', ...
+    getString(message('MATLAB:timeseries:tsguis:viewnode:Detrend')), ...
+    'Callback', {@localPreproc h 1});
+uimenu('Parent',mpreproc,'Label', ...
+    getString(message('MATLAB:timeseries:tsguis:viewnode:Filter')), ...
+    'Callback', {@localPreproc h 2});
+uimenu('Parent',mpreproc,'Label', ...
+    getString(message('MATLAB:timeseries:tsguis:viewnode:Interpolate')), ...
+    'Callback', {@localPreproc h 3});
+
+%--------------------------------------------------------------------------
+function localPreproc(eventSrc,eventData,this,Ind)
+
+
+RS = tsguis.preprocdlg(this);
+set(RS.Handles.TABGRPpreproc,'SelectedIndex',Ind);
